@@ -1,4 +1,4 @@
-# zotero-safetylit-mods
+# SafetyLit MODS
 
 Installing:
 
