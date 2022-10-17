@@ -7,7 +7,7 @@ Installing:
 - Select the `Files and Folders` sub-tab
 - Click `Show Data Directory`
 - navigate to the `zotero` directory in the window that opens, then to the `translators` subdirectory
-- drop [`SafetyLit MODS.js`](http://retorque.re/zotero-safetylit-mods/SafetyLit%20MODS.js) in the `translators` directory
+- drop [`SafetyLit MODS.js`](https://retorque.re/zotero-safetylit-mods/SafetyLit%20MODS.js) in the `translators` directory
 - restart Zotero
 
 Using:
