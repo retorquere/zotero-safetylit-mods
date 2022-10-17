@@ -1,0 +1,37 @@
+--- MODS.js	2022-10-17 19:00:58.000000000 +0200
++++ SafetyLit MODS.js	2022-10-17 19:02:12.000000000 +0200
+@@ -1,11 +1,11 @@
+ {
+ 	"translatorID": "0e2235e7-babf-413c-9acf-f27cce5f059c",
+-	"label": "MODS",
+-	"creator": "Simon Kornblith, Richard Karnesky, and Abe Jellinek",
++	"label": "SafetyLit MODS",
++	"creator": "Simon Kornblith, Richard Karnesky, Abe Jellinek and Emiliano Heyns",
+ 	"target": "xml",
+ 	"minVersion": "2.1.9",
+ 	"maxVersion": "",
+-	"priority": 50,
++	"priority": 60,
+ 	"configOptions": {
+ 		"dataMode": "xml/dom"
+ 	},
+@@ -13,7 +13,7 @@
+ 		"exportNotes": true
+ 	},
+ 	"inRepository": true,
+-	"translatorType": 3,
++	"translatorType": 2,
+ 	"lastUpdated": "2021-07-14 23:47:43"
+ }
+ 
+@@ -370,6 +370,10 @@
+ 	var item;
+ 	let titleInfo;
+ 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
++		if (item.pages.match(/^d+$/)) item.pages = `e${item.pages}` // heye: add leading 'e'
++		delete item.journalAbbreviation // heye
++		if (!item.pages && !item.volume && item.issue) item.pages = item.volume = item.issue = 'ePub' // heye
++
+ 		// Don't export notes or standalone attachments
+ 		if (item.itemType === "note" || item.itemType === "attachment") continue;
+ 		
