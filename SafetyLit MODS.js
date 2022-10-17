@@ -372,7 +372,7 @@ function doExport() {
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
 		if (item.pages.match(/^d+$/)) item.pages = `e${item.pages}` // heye: add leading 'e'
 		delete item.journalAbbreviation // heye
-		if (!item.pages && !item.volume && item.issue) item.pages = item.volume = item.issue = 'ePub' // heye
+		if (!item.pages && !item.volume && !item.issue) item.pages = item.volume = item.issue = 'ePub' // heye
 
 		// Don't export notes or standalone attachments
 		if (item.itemType === "note" || item.itemType === "attachment") continue;
