@@ -1,10 +1,11 @@
---- MODS.js	2022-10-17 19:00:58.000000000 +0200
-+++ SafetyLit MODS.js	2022-10-17 19:02:12.000000000 +0200
+--- MODS.js	2022-10-18 07:56:24.000000000 +0200
++++ SafetyLit MODS.js	2022-10-18 08:14:34.000000000 +0200
 @@ -1,11 +1,11 @@
  {
- 	"translatorID": "0e2235e7-babf-413c-9acf-f27cce5f059c",
+-	"translatorID": "0e2235e7-babf-413c-9acf-f27cce5f059c",
 -	"label": "MODS",
 -	"creator": "Simon Kornblith, Richard Karnesky, and Abe Jellinek",
++	"translatorID": "011e23fd-91bd-4c3e-b1ae-edf22889d944",
 +	"label": "SafetyLit MODS",
 +	"creator": "Simon Kornblith, Richard Karnesky, Abe Jellinek and Emiliano Heyns",
  	"target": "xml",
@@ -15,15 +16,17 @@
  	"configOptions": {
  		"dataMode": "xml/dom"
  	},
-@@ -13,7 +13,7 @@
+@@ -13,8 +13,8 @@
  		"exportNotes": true
  	},
  	"inRepository": true,
 -	"translatorType": 3,
+-	"lastUpdated": "2021-07-14 23:47:43"
 +	"translatorType": 2,
- 	"lastUpdated": "2021-07-14 23:47:43"
++	"lastUpdated": "2022-10-18 08:14:34"
  }
  
+ /*
 @@ -370,6 +370,10 @@
  	var item;
  	let titleInfo;
