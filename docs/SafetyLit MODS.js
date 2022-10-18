@@ -1,5 +1,5 @@
 {
-	"translatorID": "0e2235e7-babf-413c-9acf-f27cce5f059c",
+	"translatorID": "011e23fd-91bd-4c3e-b1ae-edf22889d944",
 	"label": "SafetyLit MODS",
 	"creator": "Simon Kornblith, Richard Karnesky, Abe Jellinek and Emiliano Heyns",
 	"target": "xml",
