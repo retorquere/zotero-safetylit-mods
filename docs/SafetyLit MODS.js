@@ -14,7 +14,7 @@
 	},
 	"inRepository": true,
 	"translatorType": 2,
-	"lastUpdated": "2022-10-18 08:14:34"
+	"lastUpdated": "2022-10-19 08:05:39"
 }
 
 /*
@@ -370,7 +370,7 @@ function doExport() {
 	var item;
 	let titleInfo;
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
-		if (item.pages.match(/^d+$/)) item.pages = `e${item.pages}` // heye: add leading 'e'
+		if (item.pages && item.pages.match(/^d+$/)) item.pages = `e${item.pages}` // heye: add leading 'e'
 		delete item.journalAbbreviation // heye
 		if (!item.pages && !item.volume && !item.issue) item.pages = item.volume = item.issue = 'ePub' // heye
 
