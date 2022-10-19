@@ -1,5 +1,5 @@
 --- MODS.js	2022-10-18 07:56:24.000000000 +0200
-+++ SafetyLit MODS.js	2022-10-18 08:14:34.000000000 +0200
++++ SafetyLit MODS.js	2022-10-19 12:09:23.000000000 +0200
 @@ -1,11 +1,11 @@
  {
 -	"translatorID": "0e2235e7-babf-413c-9acf-f27cce5f059c",
@@ -23,17 +23,25 @@
 -	"translatorType": 3,
 -	"lastUpdated": "2021-07-14 23:47:43"
 +	"translatorType": 2,
-+	"lastUpdated": "2022-10-18 08:14:34"
++	"lastUpdated": "2022-10-19 12:09:23"
  }
  
  /*
-@@ -370,6 +370,10 @@
+@@ -370,6 +370,18 @@
  	var item;
  	let titleInfo;
  	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
-+		if (item.pages.match(/^d+$/)) item.pages = `e${item.pages}` // heye: add leading 'e'
-+		delete item.journalAbbreviation // heye
-+		if (!item.pages && !item.volume && !item.issue) item.pages = item.volume = item.issue = 'ePub' // heye
++		// Emiliano Heyns: SafetyLit cleanup
++		for (const page of ['pages', 'codePages', 'firstPage']) {
++			if (!isNaN(parseInt(item[page]))) item[page] = `e${item[page]}`
++		}
++		for (const number of ['volume', 'issue', 'section']) {
++			for (const volume of ['volume', 'codeVolume', 'reporterVolume']) {
++				if (!item[number] && !item[number] && !item.issue) item[number] = item[volume] = item.issue = 'ePub'
++			}
++		}
++		delete item.journalAbbreviation
++		// Emiliano Heyns: end of SafetyLit cleanup
 +
  		// Don't export notes or standalone attachments
  		if (item.itemType === "note" || item.itemType === "attachment") continue;
