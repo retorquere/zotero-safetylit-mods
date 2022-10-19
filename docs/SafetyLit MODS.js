@@ -14,7 +14,7 @@
 	},
 	"inRepository": true,
 	"translatorType": 2,
-	"lastUpdated": "2022-10-19 08:05:39"
+	"lastUpdated": "2022-10-19 11:29:51"
 }
 
 /*
@@ -370,9 +370,19 @@ function doExport() {
 	var item;
 	let titleInfo;
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
-		if (item.pages && item.pages.match(/^d+$/)) item.pages = `e${item.pages}` // heye: add leading 'e'
-		delete item.journalAbbreviation // heye
-		if (!item.pages && !item.volume && !item.issue) item.pages = item.volume = item.issue = 'ePub' // heye
+		// Emiliano Heyns: SafetyLit cleanup
+		for (const page of ['pages', 'codePages', 'firstPage']) {
+      Zotero.debug(`SafetyLit ${page}=${JSON.stringify(item[page])} ${!isNaN(item[page])}`)
+			if (!isNaN(parseInt(item[page]))) item[page] = `e${item[page]}`
+      Zotero.debug(`SafetyLit ${page}:=${JSON.stringify(item[page])}`)
+    }
+		for (const number of ['volume', 'issue', 'section']) {
+			for (const volume of ['volume', 'codeVolume', 'reporterVolume']) {
+				if (!item[number] && !item[number] && !item.issue) item[number] = item[volume] = item.issue = 'ePub'
+			}
+		}
+		delete item.journalAbbreviation
+		// Emiliano Heyns: end of SafetyLit cleanup
 
 		// Don't export notes or standalone attachments
 		if (item.itemType === "note" || item.itemType === "attachment") continue;
