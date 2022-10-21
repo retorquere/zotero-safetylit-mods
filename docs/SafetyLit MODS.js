@@ -14,7 +14,7 @@
 	},
 	"inRepository": true,
 	"translatorType": 2,
-	"lastUpdated": "2022-10-19 12:09:23"
+	"lastUpdated": "2022-10-21 07:49:36"
 }
 
 /*
@@ -372,7 +372,7 @@ function doExport() {
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
 		// Emiliano Heyns: SafetyLit cleanup
 		for (const page of ['pages', 'codePages', 'firstPage']) {
-			if (!isNaN(parseInt(item[page]))) item[page] = `e${item[page]}`
+			if (`${item[page]}`.match(/^\d+$/)) item[page] = `e${item[page]}`
 		}
 		for (const number of ['volume', 'issue', 'section']) {
 			for (const volume of ['volume', 'codeVolume', 'reporterVolume']) {
