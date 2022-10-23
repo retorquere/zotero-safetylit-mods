@@ -14,7 +14,7 @@
 	},
 	"inRepository": true,
 	"translatorType": 2,
-	"lastUpdated": "2022-10-21 07:49:36"
+	"lastUpdated": "2022-10-23 23:53:37"
 }
 
 /*
@@ -371,12 +371,12 @@ function doExport() {
 	let titleInfo;
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
 		// Emiliano Heyns: SafetyLit cleanup
-		for (const page of ['pages', 'codePages', 'firstPage']) {
-			if (`${item[page]}`.match(/^\d+$/)) item[page] = `e${item[page]}`
-		}
 		for (const number of ['volume', 'issue', 'section']) {
+			if (`${item[number]}`.match(/^\d+$/)) item[number] = `e${item[number]}`
+		}
+		for (const page of ['pages', 'codePages', 'firstPage']) {
 			for (const volume of ['volume', 'codeVolume', 'reporterVolume']) {
-				if (!item[number] && !item[number] && !item.issue) item[number] = item[volume] = item.issue = 'ePub'
+				if (!item[page] && !item[volume] && !item.issue) item[page] = item[volume] = item.issue = 'ePub'
 			}
 		}
 		delete item.journalAbbreviation
