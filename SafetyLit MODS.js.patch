@@ -1,5 +1,5 @@
 --- MODS.js	2022-10-18 07:56:24.000000000 +0200
-+++ SafetyLit MODS.js	2022-10-23 23:53:37.000000000 +0200
++++ SafetyLit MODS.js	2022-10-24 08:03:59.000000000 +0200
 @@ -1,11 +1,11 @@
  {
 -	"translatorID": "0e2235e7-babf-413c-9acf-f27cce5f059c",
@@ -23,23 +23,21 @@
 -	"translatorType": 3,
 -	"lastUpdated": "2021-07-14 23:47:43"
 +	"translatorType": 2,
-+	"lastUpdated": "2022-10-23 23:53:37"
++	"lastUpdated": "2022-10-24 08:03:59"
  }
  
  /*
-@@ -370,6 +370,18 @@
+@@ -370,6 +370,16 @@
  	var item;
  	let titleInfo;
  	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
 +		// Emiliano Heyns: SafetyLit cleanup
-+		for (const number of ['volume', 'issue', 'section']) {
-+			if (`${item[number]}`.match(/^\d+$/)) item[number] = `e${item[number]}`
-+		}
-+		for (const page of ['pages', 'codePages', 'firstPage']) {
-+			for (const volume of ['volume', 'codeVolume', 'reporterVolume']) {
-+				if (!item[page] && !item[volume] && !item.issue) item[page] = item[volume] = item.issue = 'ePub'
-+			}
-+		}
++    const page = ['pages', 'codePages', 'firstPage'].find(k => item[k])
++    const volume = ['volume', 'codeVolume', 'reporterVolume'].find(k => item[k])
++
++		if (page && `${item[page]}`.match(/^\d+$/)) item[page] = `e${item[page]}`
++		if (page && !item[page] && volume && !item[volume] && !item.issue) item[page] = item[volume] = item.issue = 'ePub'
++
 +		delete item.journalAbbreviation
 +		// Emiliano Heyns: end of SafetyLit cleanup
 +
