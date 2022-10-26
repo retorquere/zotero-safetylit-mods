@@ -6,11 +6,12 @@ all:
 	cd docs && diff -u MODS.js 'SafetyLit MODS.js' > '../SafetyLit MODS.js.patch' || true
 
 install:
-	make all
+	@make all
 	cp 'docs/SafetyLit MODS.js' ~/.BBTZ5TEST/zotero/translators
 
 update:
-	make all
+	@make all
 	git add docs *.patch
 	git commit -m 'update'
 	git push
+	@echo published $(shell grep lastUpdated 'docs/SafetyLit MODS.js')
