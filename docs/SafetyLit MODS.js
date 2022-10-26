@@ -14,7 +14,7 @@
 	},
 	"inRepository": true,
 	"translatorType": 2,
-	"lastUpdated": "2022-10-24 08:03:59"
+	"lastUpdated": "2022-10-26 04:04:47"
 }
 
 /*
@@ -371,13 +371,12 @@ function doExport() {
 	let titleInfo;
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
 		// Emiliano Heyns: SafetyLit cleanup
-    const page = ['pages', 'codePages', 'firstPage'].find(k => item[k])
-    const volume = ['volume', 'codeVolume', 'reporterVolume'].find(k => item[k])
+		if (item.itemType.endsWith('Article')) {
+			if (`${item.pages}`.match(/^\d+$/)) item.pages = `e${item.pages}`
+			if (!item.pages && !item.volume && !item.issue) item.pages = item.volume = item.issue = 'ePub'
 
-		if (page && `${item[page]}`.match(/^\d+$/)) item[page] = `e${item[page]}`
-		if (page && !item[page] && volume && !item[volume] && !item.issue) item[page] = item[volume] = item.issue = 'ePub'
-
-		delete item.journalAbbreviation
+			delete item.journalAbbreviation
+		}
 		// Emiliano Heyns: end of SafetyLit cleanup
 
 		// Don't export notes or standalone attachments
