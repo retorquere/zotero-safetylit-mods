@@ -1,7 +1,17 @@
 <html>
   <body>
+    <pre id="header"></pre>
+    <a href="SafetyLit MODS.js">SafetyLit MODS.js</a>
     <script>
       if (window.location.protocol === 'http:') window.location.href = window.location.href.replace('http://','https://')
+      fetch('SafetyLit MODS.js')
+        .then(response => response.text())
+        .then(data => {
+          const header = data.replace(/(\n}\n).*/m, '$1')
+          const pre = document.getElementById('header')
+          pre.textContent = data;
+        })
+        .catch(error => console.error('Error:', error));
     </script>
   </body>
 </html>
