@@ -1,5 +1,5 @@
---- MODS.js	2024-05-28 17:03:38
-+++ SafetyLit MODS.js	2024-05-28 17:04:04
+--- MODS.js	2024-05-28 22:06:12
++++ SafetyLit MODS.js	2024-05-28 22:06:12
 @@ -352,6 +352,15 @@
  	var item;
  	let titleInfo;
