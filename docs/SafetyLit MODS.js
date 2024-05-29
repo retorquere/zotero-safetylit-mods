@@ -14,7 +14,7 @@
   },
   "inRepository": false,
   "translatorType": 2,
-  "lastUpdated": "2024-05-28 22:52:18"
+  "lastUpdated": "2024-05-28 23:51:08"
 }
 
 /*
@@ -373,6 +373,17 @@ function doExport() {
 		// Emiliano Heyns: SafetyLit DOI retrieval
 		let doi
 		if (!item.DOI && (doi = item.url.match(/^(https?:[/][/]([^.]+[.])?doi[.]org[/])?(10.\d{4,9}\/.+)/))) item.DOI = doi[3]
+		// Emiliano Heyns: SafetyLit name fixup
+		for (const creator of (item.creators || [])) {
+			const name = creator.name || (creator.fieldMode === 1 && creator.lastName)
+			if (name && name.replace(/[^a-z ]/i, '').match(/^[a-zA-Z]+ [A-Z]+$/)) {
+				const [given, family] = name.split(' ')
+				creator.fieldMode = 0
+				creator.firstName = given
+				creator.lastName = family.replace(/^(.)(.+)/, (match, car, cdr) => car + cdr.toLowerCase())
+				delete creator.name
+			}
+		}
 		// Emiliano Heyns: SafetyLit cleanup
 		if (item.itemType.endsWith('Article')) {
 			if (`${item.pages}`.match(/^\d+$/)) item.pages = `e${item.pages}`
