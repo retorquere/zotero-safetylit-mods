@@ -14,7 +14,7 @@
   },
   "inRepository": false,
   "translatorType": 2,
-  "lastUpdated": "2024-05-28 22:06:43"
+  "lastUpdated": "2024-05-28 22:52:18"
 }
 
 /*
@@ -370,6 +370,9 @@ function doExport() {
 	var item;
 	let titleInfo;
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
+		// Emiliano Heyns: SafetyLit DOI retrieval
+		let doi
+		if (!item.DOI && (doi = item.url.match(/^(https?:[/][/]([^.]+[.])?doi[.]org[/])?(10.\d{4,9}\/.+)/))) item.DOI = doi[3]
 		// Emiliano Heyns: SafetyLit cleanup
 		if (item.itemType.endsWith('Article')) {
 			if (`${item.pages}`.match(/^\d+$/)) item.pages = `e${item.pages}`

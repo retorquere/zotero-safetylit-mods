@@ -1,6 +1,5 @@
 install:
-	@make all
-	cp 'docs/SafetyLit MODS.js' ~/.BBTZ5TEST/zotero/translators
+	cp 'docs/SafetyLit MODS.js' ~/.BBTTEST/zotero/translators
 
 edit:
 	cd docs && git checkout MODS.js
