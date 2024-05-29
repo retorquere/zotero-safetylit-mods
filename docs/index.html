@@ -9,7 +9,7 @@
         .then(data => {
           const header = data.replace(/(\n}\n).*/m, '$1')
           const pre = document.getElementById('header')
-          pre.textContent = data;
+          pre.textContent = header;
         })
         .catch(error => console.error('Error:', error));
     </script>
