@@ -1,0 +1,18 @@
+--- MODS.js	2024-05-28 17:03:38
++++ SafetyLit MODS.js	2024-05-28 17:04:04
+@@ -352,6 +352,15 @@
+ 	var item;
+ 	let titleInfo;
+ 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
++		// Emiliano Heyns: SafetyLit cleanup
++		if (item.itemType.endsWith('Article')) {
++			if (`${item.pages}`.match(/^\d+$/)) item.pages = `e${item.pages}`
++			if (!item.pages && !item.volume && !item.issue) item.pages = item.volume = item.issue = 'ePub'
++
++			delete item.journalAbbreviation
++		}
++		// Emiliano Heyns: end of SafetyLit cleanup
++
+ 		// Don't export notes or standalone attachments
+ 		if (item.itemType === "note" || item.itemType === "attachment") continue;
+ 		
