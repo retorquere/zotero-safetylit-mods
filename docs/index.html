@@ -7,7 +7,7 @@
       fetch('SafetyLit MODS.js')
         .then(response => response.text())
         .then(data => {
-          const header = data.replace(/(\n}\n).*/m, '$1')
+          const header = data.replace(/(\n}\n)[\s\S]*/m, '$1')
           const pre = document.getElementById('header')
           pre.textContent = header;
         })
