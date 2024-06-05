@@ -14,7 +14,7 @@
   },
   "inRepository": false,
   "translatorType": 2,
-  "lastUpdated": "2024-05-28 23:51:08"
+  "lastUpdated": "2024-06-05 17:45:03"
 }
 
 /*
@@ -372,7 +372,7 @@ function doExport() {
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
 		// Emiliano Heyns: SafetyLit DOI retrieval
 		let doi
-		if (!item.DOI && (doi = item.url.match(/^(https?:[/][/]([^.]+[.])?doi[.]org[/])?(10.\d{4,9}\/.+)/))) item.DOI = doi[3]
+		if (!item.DOI && item.url && (doi = item.url.match(/^(https?:[/][/]([^.]+[.])?doi[.]org[/])?(10.\d{4,9}\/.+)/))) item.DOI = doi[3]
 		// Emiliano Heyns: SafetyLit name fixup
 		for (const creator of (item.creators || [])) {
 			const name = creator.name || (creator.fieldMode === 1 && creator.lastName)
