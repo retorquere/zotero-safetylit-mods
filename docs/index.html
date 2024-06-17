@@ -13,5 +13,18 @@
         })
         .catch(error => console.error('Error:', error));
     </script>
+
+    To delete the abstract for selected items:
+
+    Open Tools - Developer - Run Javascript, paste the following script:
+
+    <pre>
+      for (const item of Zotero.getActiveZoteroPane().getSelectedItems()) {
+        item.setField('abstractNote', '')
+        await item.saveTx()
+      } 
+    </pre>
+
+    Select the items you want to erase the abstract for, then click "run" in the Developer window. <b>This modifies the items in-place, the effect is immediate and non-reversible!</b>
   </body>
 </html>
