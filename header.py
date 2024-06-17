@@ -5,9 +5,6 @@ import json
 from datetime import datetime
 import re
 
-header = ''
-mode = ''
-
 parser = argparse.ArgumentParser(description='Process JSON header')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('--merge', type=str, help='add header to JSON data')
