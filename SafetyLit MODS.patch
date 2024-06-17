@@ -1,9 +1,11 @@
---- MODS.js	2024-06-05 17:44:27
-+++ SafetyLit MODS.js	2024-06-05 17:44:57
-@@ -352,6 +352,29 @@
+--- MODS.js	2024-06-17 09:50:35
++++ SafetyLit MODS.js	2024-06-17 09:52:39
+@@ -352,6 +352,31 @@
  	var item;
  	let titleInfo;
  	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
++		// Emiliano Heyns: optionally strip abstract
++		if (!Zotero.getOption('Export abstract')) delete item.abstractNote
 +		// Emiliano Heyns: SafetyLit DOI retrieval
 +		let doi
 +		if (!item.DOI && item.url && (doi = item.url.match(/^(https?:[/][/]([^.]+[.])?doi[.]org[/])?(10.\d{4,9}\/.+)/))) item.DOI = doi[3]

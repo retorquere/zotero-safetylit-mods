@@ -1,20 +1,21 @@
 {
-  "translatorID": "011e23fd-91bd-4c3e-b1ae-edf22889d944",
-  "label": "SafetyLit MODS",
-  "creator": "Simon Kornblith, Richard Karnesky, Abe Jellinek and Emiliano Heyns",
-  "target": "xml",
-  "minVersion": "2.1.9",
-  "maxVersion": "",
-  "priority": 50,
-  "configOptions": {
-    "dataMode": "xml/dom"
-  },
-  "displayOptions": {
-    "exportNotes": true
-  },
-  "inRepository": false,
-  "translatorType": 2,
-  "lastUpdated": "2024-06-05 17:45:03"
+	"translatorID": "011e23fd-91bd-4c3e-b1ae-edf22889d944",
+	"label": "SafetyLit MODS",
+	"creator": "Simon Kornblith, Richard Karnesky, Abe Jellinek and Emiliano Heyns",
+	"target": "xml",
+	"minVersion": "2.1.9",
+	"maxVersion": "",
+	"priority": 50,
+	"configOptions": {
+		"dataMode": "xml/dom"
+	},
+	"displayOptions": {
+		"exportNotes": true,
+		"Export abstract": true
+	},
+	"inRepository": false,
+	"translatorType": 2,
+	"lastUpdated": "2024-06-17T09:52:42"
 }
 
 /*
@@ -370,6 +371,8 @@ function doExport() {
 	var item;
 	let titleInfo;
 	while (item = Zotero.nextItem()) { // eslint-disable-line no-cond-assign
+		// Emiliano Heyns: optionally strip abstract
+		if (!Zotero.getOption('Export abstract')) delete item.abstractNote
 		// Emiliano Heyns: SafetyLit DOI retrieval
 		let doi
 		if (!item.DOI && item.url && (doi = item.url.match(/^(https?:[/][/]([^.]+[.])?doi[.]org[/])?(10.\d{4,9}\/.+)/))) item.DOI = doi[3]

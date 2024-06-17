@@ -1,15 +1,15 @@
 install:
 	cp 'docs/SafetyLit MODS.js' ~/.BBTTEST/zotero/translators
 
-edit:
+split:
 	cd docs && git checkout MODS.js
-	cd docs && ../header.cr --remove header.json MODS.js
+	cd docs && ../header.py --split header.json MODS.js
 	cd docs && patch -o 'SafetyLit MODS.js' < '../SafetyLit MODS.patch'
 
-stitch:
+merge:
 	cd docs && diff -u MODS.js 'SafetyLit MODS.js' > '../SafetyLit MODS.patch'; status=$$?; if [ $$status -gt 1 ]; then exit $$status; fi
 	cd docs && git checkout MODS.js
-	cd docs && ../header.cr --add header.json 'SafetyLit MODS.js'
+	cd docs && ../header.py --merge header.json 'SafetyLit MODS.js'
 
 update:
 	git add docs *.patch
